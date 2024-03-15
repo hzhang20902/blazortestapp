@@ -1,6 +1,14 @@
-using Blazortestapp.Components;
+﻿using Blazortestapp.Components;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Blazortestapp.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<BlazortestappContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("BlazortestappContext") ?? throw new InvalidOperationException("Connection string 'BlazortestappContext' not found.")));
+
+builder.Services.AddQuickGridEntityFrameworkAdapter();;
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
