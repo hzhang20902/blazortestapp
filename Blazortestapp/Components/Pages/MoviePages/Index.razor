@@ -12,7 +12,7 @@
     <a href="movies/create">Create New</a>
 </p>
 
-<QuickGrid Class="table" Items="DB.Movie">
+<QuickGrid Class="table" Items="DB.Movie" Pagination="state">
     <PropertyColumn Property="movie => movie.Title" Sortable="true"/>
     <PropertyColumn Property="movie => movie.ReleaseDate" Sortable="true" Title="Release Date" Format="MM/dd/yyyy"/>
     <PropertyColumn Property="movie => movie.Genre" Sortable="true" />
@@ -24,3 +24,9 @@
         <a href="@($"movies/delete?id={movie.Id}")">Delete</a>
     </TemplateColumn>
 </QuickGrid>
+
+<Paginator State="state"/>
+
+@code {
+    PaginationState state = new PaginationState { ItemsPerPage = 3 };
+}
