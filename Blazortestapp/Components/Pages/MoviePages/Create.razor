@@ -2,6 +2,7 @@
 @inject Blazortestapp.Data.BlazortestappContext DB
 @using Blazortestapp.Models
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <PageTitle>Create</PageTitle>
 
@@ -11,11 +12,13 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
+        @*Enhance is essentially a fetch and response binding in one taken care of for you*@
         <EditForm method="post" Model="Movie" OnValidSubmit="AddMovie" FormName="create" Enhance>
             <DataAnnotationsValidator />
             <ValidationSummary class="text-danger" />
             <div class="mb-3">
                 <label for="title" class="form-label">Title:</label> 
+                @*bind dash Value tells which attribute within to bind to, kind of like colon event*@
                 <InputText id="title" @bind-Value="Movie.Title" class="form-control" /> 
                 <ValidationMessage For="() => Movie.Title" class="text-danger" /> 
             </div>        
